@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hackea tu Cuerpo</title>
+  <style>
+    :root {
+      --bg: #fefefe;
+      --text: #111;
+      --primary: #007aff;
+      --card: #fff;
+      --border: #e5e5e5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      padding: 2rem 1.5rem;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+
+    select {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      font-size: 1.1rem;
+      background: var(--card);
+      appearance: none;
+      outline: none;
+    }
+
+    .card {
+      margin-top: 2rem;
+      background: var(--card);
+      border-radius: 16px;
+      padding: 1.5rem;
+      font-size: 1.2rem;
+      line-height: 1.5;
+      border: 1px solid var(--border);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+    }
+
+    @media (min-width: 600px) {
+      body {
+        max-width: 400px;
+        margin: 3rem auto;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>¿Qué te pasa?</h1>
+  <select id="problema">
+    <option value="">Elegí un síntoma</option>
+    <option value="nervioso">Estoy nervioso</option>
+    <option value="ansioso">Estoy ansioso</option>
+    <option value="energia">Estoy sin energía</option>
+    <option value="nariz">Tengo la nariz tapada</option>
+    <option value="insomnio">No puedo dormir</option>
+  </select>
+
+  <div class="card" id="consejo" style="display: none;"></div>
+
+  <script>
+    const consejos = {
+      nervioso: "Apretá tu nariz. Te calmarás.",
+      ansioso: "Ubicá tu mano sobre tu corazón y respirá lento.",
+      energia: "Salpicá agua helada en tu cara para activar tu cuerpo.",
+      nariz: "Poné un cubo de hielo en tu paladar.",
+      insomnio: "Parpadeá rápido durante un minuto."
+    };
+
+    const select = document.getElementById("problema");
+    const consejo = document.getElementById("consejo");
+
+    select.addEventListener("change", () => {
+      const val = select.value;
+      if (val && consejos[val]) {
+        consejo.textContent = consejos[val];
+        consejo.style.display = "block";
+      } else {
+        consejo.style.display = "none";
+      }
+    });
+  </script>
+
+</body>
+</html>
